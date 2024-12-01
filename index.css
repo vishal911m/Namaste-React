@@ -1,3 +1,40 @@
-#container{
-    background-color: red;
+.header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.header > img{
+    width: 100px;
+}
+
+.list{
+    list-style: none;
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+}
+
+.list > li {
+    padding: 10px;
+}
+
+.body{
+    width: 200px;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    /* padding: 10px; */
+}
+
+.body > img{
+    width: 100%;
+}
+
+.card{
+    display: flex;
+    flex-wrap: wrap;
+    /* padding: 10px; */
+    /* margin: 10px; */
 }
