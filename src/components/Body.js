@@ -1,51 +1,52 @@
 import { useState } from "react";
-import { restaurantList } from "../utils/mockData";
+import { CiSearch } from "react-icons/ci";
 import RestaurantCard from "./RestaurantCard";
-
-const FilterData = (searchInput, restaurants) => {
-    const FilteredData = restaurants.filter((restaurant) => {
-        return restaurant.info.name.includes(searchInput);
-    })
-    return FilteredData;
-};
+import resList from "../utils/mockData";
 
 const Body = () => {
-const [searchInput, setSearchInput] = useState("");
-const [restaurants, setRestaurants] = useState(restaurantList);
-    return(
-        <>
-        <div className="search-bar">
-            <input 
-                className="search-input"
-                placeholder="Search"
-                value={searchInput}
-                onChange={(e)=> setSearchInput(e.target.value)}
-            />
-            <button
-                className="search-button"
-                onClick={() => {
-                    const data = FilterData(searchInput, restaurants);
-                    setRestaurants(data);                  
-                }}
-            >Search</button>
-        </div>
-        <div className="body">
-            {/* <RestaurantCard restaurant={restaurantList[0].info}/>
-            <RestaurantCard restaurant={restaurantList[1].info}/>
-            <RestaurantCard restaurant={restaurantList[2].info}/>
-            <RestaurantCard restaurant={restaurantList[3].info}/>
-            <RestaurantCard restaurant={restaurantList[4].info}/>
-            <RestaurantCard restaurant={restaurantList[5].info}/>
-            <RestaurantCard restaurant={restaurantList[6].info}/>
-            <RestaurantCard restaurant={restaurantList[7].info}/> */}
-            {
-            restaurants.map((restaurant) => {
-                return <RestaurantCard {...restaurant.info}/>;
-            })
-            }
-        </div>
-        </>
+  // State Variable - useState Hook is used to create a state variable to store data and a function to update it.
+  let [restaurantList, setRestaurantList] = useState(resList);
+  let [showButton, setShowButton] = useState(true);
+
+  // Function to update the restaurant list based on the rating.
+  const filterRestaurantList = () => {  
+    const filteredRestaurant = restaurantList.filter(
+      (res) => res.info.avgRating > 4.3
     );
+
+    setRestaurantList(filteredRestaurant);
+    setShowButton(false);
+  };
+
+  return (
+    <div className="body">
+      <div className="search-box">
+        <input placeholder="search a restaurant you want..." />
+        <CiSearch className="search-icon" />
+      </div>
+      <div className="filter">
+        {
+          // Conditional Rendering - If the showButton is true, then the button will be displayed.
+          showButton && (
+            <button
+              className="filter-btn"
+              onClick={filterRestaurantList}
+            >
+              Top Rated Restaurants
+            </button>
+          )
+        }
+      </div>
+      <div className="restaurant-container">
+        {restaurantList.map((restaurant) => (
+          <RestaurantCard
+            key={restaurant.info.id}
+            restaurantData={restaurant}
+          />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Body;
