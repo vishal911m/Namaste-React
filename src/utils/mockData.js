@@ -1,7 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const restaurantList = [
+export const restaurantList = [
     {
       info: {
         id: "10894",
@@ -360,77 +357,3 @@ const restaurantList = [
       },
     },
   ];
-
-const Header = () => {
-    return(
-        <div className="header">
-            <a href="/">
-            <img
-                className="logo" 
-                src="https://yt3.ggpht.com/ytc/AKedOLSpK3T_2RxkMYb-pk9oENQB0NvYpeOdXRgQe8i5=s800-c-k-c0x00ffffff-no-rj"
-                alt="logo"
-            />
-            </a>
-            <ul className="nav-items">
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
-                <li>Cart</li>
-            </ul>
-        </div>
-    );
-};
-
-const RestaurantCard = ({name, cuisines, deliveryTime, cloudinaryImageId}) => {
-    // console.log(restaurant);
-    return(
-        <div className="restaurant-card">
-            <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-                cloudinaryImageId}/>
-            <h1>{name}</h1>
-            <h2>{cuisines.join(", ")}</h2>
-            <h3>Delivery Time:{deliveryTime} minutes</h3>
-        </div>
-    );
-};
-
-const Body = () => {
-    return(
-        <div className="body">
-            {/* <RestaurantCard restaurant={restaurantList[0].info}/>
-            <RestaurantCard restaurant={restaurantList[1].info}/>
-            <RestaurantCard restaurant={restaurantList[2].info}/>
-            <RestaurantCard restaurant={restaurantList[3].info}/>
-            <RestaurantCard restaurant={restaurantList[4].info}/>
-            <RestaurantCard restaurant={restaurantList[5].info}/>
-            <RestaurantCard restaurant={restaurantList[6].info}/>
-            <RestaurantCard restaurant={restaurantList[7].info}/> */}
-            {
-            restaurantList.map((restaurant) => {
-                return <RestaurantCard {...restaurant.info}/>;
-            })
-            }
-        </div>
-    );
-};
-
-const Footer = () => {
-    return(
-        <div>
-            <h1>Footer</h1>
-        </div>
-    );
-};
-
-const AppLayout = () => {
-    return(
-        <>
-        <Header />
-        <Body />
-        <Footer />
-        </>
-    );
-};
-
-const root  = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
