@@ -1,0 +1,27 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore environment files
+.env
+
+# Ignore log files
+*.log
+
+# Ignore build files
+/dist/
+/build/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Parcel cache directory
+.parcel-cache/
+
+# Distribution/build directory
+dist/
+
+.prettierrc
+.babelrc
+package-lock.json
+package.json
