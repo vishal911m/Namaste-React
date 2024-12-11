@@ -35,3 +35,22 @@
   flex-wrap: wrap;
   padding: 5px;
 }
+
+.shimmer-card{
+  width: 200px;
+  height: 200px;
+  background: lightgrey;
+  margin: 20px;
+  padding: 5px;
+}
+
+.restaurant-list{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin: 20px;
+}
+
+.menu{
+  display: flex;
+}
