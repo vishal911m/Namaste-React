@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const loggedInUser = () => {
     //API call to check authentication
@@ -8,6 +9,13 @@ const loggedInUser = () => {
 
 const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    // useEffect(()=>{
+    //     console.log("useEffect()");
+    // },[isLoggedIn]);
+
+    // console.log("render()");    
+    
     return(
         <div className="header">
             <a href="/">
@@ -18,9 +26,9 @@ const Header = () => {
             />
             </a>
             <ul className="nav-items">
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
                 <li>Cart</li>
             </ul>
             {isLoggedIn ? <button onClick={() => setIsLoggedIn(false)}>Logout</button> : 

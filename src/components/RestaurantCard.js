@@ -1,6 +1,6 @@
 import { IMG_CDN_URL } from "../utils/constants";
 
-const RestaurantCard = ({name, cuisines, deliveryTime, cloudinaryImageId}) => {
+const RestaurantCard = ({name, cuisines, sla, cloudinaryImageId}) => {
     // console.log(restaurant);
     return(
         <div className="restaurant-card">
@@ -8,7 +8,7 @@ const RestaurantCard = ({name, cuisines, deliveryTime, cloudinaryImageId}) => {
                 cloudinaryImageId}/>
             <h1>{name}</h1>
             <h2>{cuisines.join(", ")}</h2>
-            <h3>Delivery Time:{deliveryTime} minutes</h3>
+            <h3>Delivery Time: {sla.deliveryTime} minutes</h3>
         </div>
     );
 };
