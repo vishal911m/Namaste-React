@@ -3,6 +3,7 @@ import { restaurantList } from "../utils/mockData";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import { MENU_API_URL, SWIGGY_API_URL } from "../utils/constants";
 
 const FilterData = (searchInput, allRestaurants) => {
     const FilteredData = allRestaurants.filter((restaurant) => {
@@ -23,7 +24,7 @@ useEffect(() => {
 }, []);
 
 async function getRestaurants() {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9046136&lng=77.614948&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch(SWIGGY_API_URL);
     const json = await data.json();    
     console.log(json);
     // Optional chaining
