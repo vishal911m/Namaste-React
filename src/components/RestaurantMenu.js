@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { IMG_CDN_URL, MENU_API_URL } from "../utils/constants";
+import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () =>{
   const param = useParams();
   const {id} = param;
   const [restaurant, setRestaurant] = useState([]);
+  const [loaded, setLoaded] = useState(true);
   const restaurantInfo = restaurant?.cards?.find((card) => card?.card?.card?.info)?.card?.card?.info;
   console.log("RestaurantInfo:",restaurantInfo);
+
 
   useEffect(()=>{
     getRestaurant();
@@ -18,6 +21,7 @@ const RestaurantMenu = () =>{
       const data = await fetch(`${MENU_API_URL}${id}`);
       const json = await data.json();
       setRestaurant(json.data);
+      setLoaded(false)
       console.log("API Request:", json.data);
     } catch (error) {
       
@@ -32,6 +36,7 @@ const RestaurantMenu = () =>{
   const menu = menuItem.map((item) => item?.card?.info?.name) ;
   console.log("Menu : ",menu);
 
+  if(loaded) return <Shimmer />
 
   return (
     <div className="restaurant-menu">
