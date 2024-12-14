@@ -36,21 +36,28 @@
   padding: 5px;
 }
 
-.shimmer-card{
+.shimmer{
   width: 200px;
-  height: 200px;
-  background: lightgrey;
-  margin: 20px;
+  height: 300px;
   padding: 5px;
+  margin: 5px;
+  background-color: lightgray;
 }
 
-.restaurant-list{
+.body-shimmer{
   display: flex;
   flex-wrap: wrap;
-  padding: 5px;
-  margin: 20px;
+  margin: 5px; 
+}
+
+.menu-img{
+  width: 200px;
+}
+
+.restaurant-menu{
+  display: flex;
 }
 
 .menu{
-  display: flex;
+  padding-left: 20px;
 }

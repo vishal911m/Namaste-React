@@ -1,9 +1,6 @@
-const About = () => {
+const About = () =>{
   return (
-    <div>
-        <h1>About Us</h1>
-        <p>Welcome to FoodVilla, your one source for all your delivery needs</p>
-    </div>
+    <h1>Your one stop destination for all your delivery needs</h1>
   );
 };
 
