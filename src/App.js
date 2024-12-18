@@ -6,10 +6,11 @@ import Body from "./components/Body";
 import Footer from "./components/Footer";
 import { createBrowserRouter, Outlet } from "react-router";
 import { RouterProvider } from "react-router-dom";
-import Error from "./components/Error";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import RestaurantMenu from "./components/RestaurantMenu";
+import Error from "./components/Error";
+import RestaurantMenu from "./components/RestarrantMenu";
+import Profile from "./components/ProfileClass";
 
 /**
  * Header
@@ -50,7 +51,13 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />
+        element: <About />,
+        children: [
+          {
+            path: "profile",
+            element: <Profile />
+          }
+        ]
       },
       {
         path: "/contact",
@@ -59,7 +66,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:id",
         element: <RestaurantMenu />
-      }
+      },
     ]
   }
 ]);

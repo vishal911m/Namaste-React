@@ -36,7 +36,15 @@
   padding: 5px;
 }
 
-.shimmer{
+.restaurant-menu{
+  display: flex;
+}
+
+.menu-items{
+  padding-left: 20px;
+}
+
+.shimmer-card{
   width: 200px;
   height: 300px;
   padding: 5px;
@@ -44,20 +52,11 @@
   background-color: lightgray;
 }
 
-.body-shimmer{
+.shimmer{
   display: flex;
   flex-wrap: wrap;
-  margin: 5px; 
 }
 
-.menu-img{
+.menu-logo{
   width: 200px;
-}
-
-.restaurant-menu{
-  display: flex;
-}
-
-.menu{
-  padding-left: 20px;
 }

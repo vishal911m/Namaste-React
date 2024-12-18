@@ -16,7 +16,7 @@ const Body = () => {
 const [searchInput, setSearchInput] = useState("");
 const [allRestaurants, setAllRestaurants] = useState([]);
 const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-const [loading, setLoading] = useState(true);
+const [isLoaded, setIsLoaded] = useState(true);
 
 //empty dependency array => once after render
 //dep array [searchInput] => once after render + everytime after render (when searchInput changes)
@@ -26,14 +26,13 @@ useEffect(() => {
 
 async function getRestaurants() {
     const data = await fetch(SWIGGY_API_URL);
-    const json = await data.json();    
+    const json = await data.json();
+    setIsLoaded(false);    
     console.log(json);
     // Optional chaining
     setAllRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
     setFilteredRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-    
     console.log("useEffect()");
-    setLoading(false);
 };
 
 console.log("render()");
@@ -44,7 +43,7 @@ console.log("render()");
 
 // not return component (early return)
 //if (!allRestaurants) return null;
-if(loading) return <Shimmer />
+if (isLoaded) return <Shimmer />;
 
 
 if(filteredRestaurants.length === 0) return<h1>No restaurant matches your filter!</h1>;
@@ -69,8 +68,10 @@ return (
  <div className="body">
      {filteredRestaurants.map((restaurant) => {
          return (
-         <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}><RestaurantCard  {...restaurant.info}/></Link>
-        );
+            <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}> 
+                <RestaurantCard  {...restaurant.info}/>
+            </Link>
+         );
      })
      }
  </div>
