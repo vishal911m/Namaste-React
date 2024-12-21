@@ -4,13 +4,8 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 import { SWIGGY_API_URL } from "../utils/constants";
-
-const FilterData = (searchInput, allRestaurants) => {
-    const FilteredData = allRestaurants.filter((restaurant) => {
-        return restaurant?.info?.name?.toLowerCase()?.includes(searchInput.toLowerCase());
-    })
-    return FilteredData;
-};
+import { FilterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
 const [searchInput, setSearchInput] = useState("");
@@ -34,6 +29,12 @@ async function getRestaurants() {
     setFilteredRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
     console.log("useEffect()");
 };
+
+// const isOnline = useOnline();
+
+// if (!isOnline) {
+//     return <h1>Offline, please check your internet connection!</h1>
+// }
 
 console.log("render()");
 
