@@ -12,22 +12,22 @@ const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const isOnline = useOnline();
     return(
-        <div className="header">
+        <div className="flex justify-between bg-yellow-100 shadow-lg sm:bg-blue-100 md:bg-pink-50">
             <a href="/">
             <img
-                className="logo" 
+                className="h-28 py-2" 
                 src={LOGO_URL}
                 alt="logo"
             />
             </a>
-            <ul className="nav-items">
-                <li><Link to={"/"}>Home</Link></li>
-                <li><Link to={"/about"}>About</Link></li>
-                <li><Link to={"/contact"}>Contact</Link></li>
-                <li>Cart</li>
-                <li><Link to={"/instamart"}>Instamart</Link></li>
+            <ul className="flex py-10">
+                <li className="px-2"><Link to={"/"}>Home</Link></li>
+                <li className="px-2"><Link to={"/about"}>About</Link></li>
+                <li className="px-2"><Link to={"/contact"}>Contact</Link></li>
+                <li className="px-2">Cart</li>
+                <li className="px-2"><Link to={"/instamart"}>Instamart</Link></li>
             </ul>
-            <h3>{isOnline ? "online" : "offline"}</h3>
+            <h3 className="py-10">{isOnline ? "online" : "offline"}</h3>
             {isLoggedIn ? <button onClick={() => setIsLoggedIn(false)}>Logout</button> : 
             <button onClick={() => setIsLoggedIn(true)}>Login</button>} 
         </div>

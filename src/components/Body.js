@@ -12,6 +12,9 @@ const [searchInput, setSearchInput] = useState("");
 const [allRestaurants, setAllRestaurants] = useState([]);
 const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 const [isLoaded, setIsLoaded] = useState(true);
+const searchBtnCSS = { 
+    backgroundColor: "red"
+}
 
 //empty dependency array => once after render
 //dep array [searchInput] => once after render + everytime after render (when searchInput changes)
@@ -51,22 +54,25 @@ if(filteredRestaurants.length === 0) return<h1>No restaurant matches your filter
   
 return (
  <>
- <div className="search-bar">
+ <div className="search-bar p-1 bg-pink-50 m-1">
    <input 
-       className="search-input"
+       className="focus:bg-green-200 p-2 m-2"
+    //    style={searchBtnCSS}
        placeholder="Search"
        value={searchInput}
        onChange={(e)=> setSearchInput(e.target.value)}
    />
    <button
-       className="search-button"
+    //    className="search-button"
+        // style={searchBtnCSS}
+        className="p-2 m-2 bg-purple-400 rounded-lg hover:bg-purple-600"
        onClick={() => {
            const data = FilterData(searchInput, allRestaurants);
            setFilteredRestaurants(data);                  
        }}
    >Search</button>
  </div>
- <div className="body">
+ <div className="flex flex-wrap">
      {filteredRestaurants.map((restaurant) => {
          return (
             <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}> 

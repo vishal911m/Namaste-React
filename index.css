@@ -1,4 +1,17 @@
-.logo {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+Normal native css
+SCSS
+inline css
+component libraries - Material UI, Base UI, Ant, Chakra
+Styled Components
+Tailwind CSS Framework
+*/
+
+/* .logo {
   width: 100px;
 }
 
@@ -59,4 +72,5 @@
 
 .menu-logo{
   width: 200px;
-}
+} */
+
