@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState} from "react";
 import ReactDOM from "react-dom/client";
 // import "./index.css";
 import Header from "./components/Header";
@@ -11,6 +11,7 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/ProfileClass";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 
 /**
  * Header
@@ -34,12 +35,24 @@ const Instamart = lazy(() => import("./components/Instamart"));
 const About = lazy(() => import("./components/About"));
 
 const App = () => {
+  const[user, setUser] = useState({
+    name: "FoodVilla",
+    title: "FoodVilla",
+    email: "support@foodvilla.com",
+  });
+
   return (
-    <div className="app">
+    <>
+    {/* put header component here to see the differenct between hard coded data and context data*/}
+    <UserContext.Provider value={{
+      user: user,
+      setUser: setUser,
+      }}>
       <Header />
       <Outlet />
       <Footer />
-    </div>
+    </UserContext.Provider>
+    </>
   );
 };
 
@@ -51,7 +64,10 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />
+        element: <Body userContent={{
+          name: "FoodVilla",
+          email: "support@foodvilla.com",
+        }}/>
       },
       {
         path: "/about",

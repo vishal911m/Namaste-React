@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
 
 const loggedInUser = () => {
     //API call to check authentication
@@ -11,6 +12,7 @@ const loggedInUser = () => {
 const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const isOnline = useOnline();
+    const {user} = useContext(UserContext);
     return(
         <div className="flex justify-between bg-yellow-100 shadow-lg sm:bg-blue-100 md:bg-pink-50">
             <a href="/">
@@ -28,6 +30,7 @@ const Header = () => {
                 <li className="px-2"><Link to={"/instamart"}>Instamart</Link></li>
             </ul>
             <h3 className="py-10">{isOnline ? "online" : "offline"}</h3>
+            <h1 className="p-10 font-bold text-red-900">{user.name}</h1>
             {isLoggedIn ? <button onClick={() => setIsLoggedIn(false)}>Logout</button> : 
             <button onClick={() => setIsLoggedIn(true)}>Login</button>} 
         </div>

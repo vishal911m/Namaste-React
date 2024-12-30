@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { restaurantList } from "../utils/mockData";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
@@ -6,8 +6,9 @@ import { Link } from "react-router";
 import { SWIGGY_API_URL } from "../utils/constants";
 import { FilterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
 
-const Body = () => {
+const Body = ({userContent}) => {
 const [searchInput, setSearchInput] = useState("");
 const [allRestaurants, setAllRestaurants] = useState([]);
 const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -15,6 +16,7 @@ const [isLoaded, setIsLoaded] = useState(true);
 const searchBtnCSS = { 
     backgroundColor: "red"
 }
+const {user, setUser} = useContext(UserContext);
 
 //empty dependency array => once after render
 //dep array [searchInput] => once after render + everytime after render (when searchInput changes)
@@ -28,8 +30,13 @@ async function getRestaurants() {
     setIsLoaded(false);    
     console.log(json);
     // Optional chaining
-    setAllRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-    setFilteredRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+    // setAllRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+    // setFilteredRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+
+    //Changed code as the "Profiler" feature from react dev tools throws error
+    const restaurants = json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+    setAllRestaurants(restaurants);
+    setFilteredRestaurants(restaurants);
     console.log("useEffect()");
 };
 
@@ -71,12 +78,20 @@ return (
            setFilteredRestaurants(data);                  
        }}
    >Search</button>
+   <input value={user.name} onChange={ e => setUser({
+    ...user,
+    name: e.target.value
+   })}></input>
+   <input value={user.email} onChange={ e => setUser({
+    ...user,
+    email: e.target.value,
+   })}></input>
  </div>
  <div className="flex flex-wrap">
      {filteredRestaurants.map((restaurant) => {
          return (
             <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}> 
-                <RestaurantCard  {...restaurant.info}/>
+                <RestaurantCard  {...restaurant.info} userContent1={userContent}/>
             </Link>
          );
      })
