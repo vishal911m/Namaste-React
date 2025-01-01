@@ -24,7 +24,7 @@ class About extends Component {
     //Best place to make API calls
     // console.log("Parent - componentDidMount");
   }
-  render() {
+    render() {
     // console.log("Parent - render")
     return (
       <div>

@@ -12,6 +12,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/ProfileClass";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/Cart";
 
 /**
  * Header
@@ -42,8 +45,8 @@ const App = () => {
   });
 
   return (
-    <>
-    {/* put header component here to see the differenct between hard coded data and context data*/}
+    // put header component here to see the differenct between hard coded data and context data
+  <Provider store={store}>
     <UserContext.Provider value={{
       user: user,
       setUser: setUser,
@@ -52,7 +55,7 @@ const App = () => {
       <Outlet />
       <Footer />
     </UserContext.Provider>
-    </>
+  </Provider>
   );
 };
 
@@ -98,6 +101,10 @@ const appRouter = createBrowserRouter([
             <Instamart />
           </Suspense> 
           ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       },
     ]
   }
