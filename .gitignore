@@ -25,4 +25,5 @@ dist/
 .babelrc
 package-lock.json
 package.json
-.gitignore
+
+/coverage

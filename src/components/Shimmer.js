@@ -1,6 +1,6 @@
 const Shimmer = () => {
   return (
-    <div className="shimmer flex flex-wrap">
+    <div className="shimmer flex flex-wrap" data-testid="shimmer">
     {/* <h1>Shimmer UI Loading........</h1> */}
     {
       Array(18)

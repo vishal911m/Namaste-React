@@ -65,6 +65,7 @@ return (
    <input 
        className="focus:bg-green-200 p-2 m-2"
     //    style={searchBtnCSS}
+       data-testid="search-input"
        placeholder="Search"
        value={searchInput}
        onChange={(e)=> setSearchInput(e.target.value)}
@@ -72,6 +73,7 @@ return (
    <button
     //    className="search-button"
         // style={searchBtnCSS}
+        data-testid="search-btn"
         className="p-2 m-2 bg-purple-400 rounded-lg hover:bg-purple-600"
        onClick={() => {
            const data = FilterData(searchInput, allRestaurants);
@@ -87,7 +89,7 @@ return (
     email: e.target.value,
    })}></input>
  </div>
- <div className="flex flex-wrap">
+ <div className="flex flex-wrap" data-testid="res-list">
      {filteredRestaurants.map((restaurant) => {
          return (
             <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}> 

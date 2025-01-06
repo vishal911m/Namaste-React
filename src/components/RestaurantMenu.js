@@ -11,9 +11,9 @@ const RestaurantMenu = () => {
   const restaurant = useRestaurant(id); // Fetch restaurant data using custom hook
 
   // Show shimmer while `restaurant` is null
-  if (!restaurant) {
-    return <Shimmer />;
-  }
+  // if (!restaurant) {
+  //   return <Shimmer />;
+  // }
 
   const dispatch = useDispatch();
 
@@ -32,11 +32,18 @@ const RestaurantMenu = () => {
       ?.find((item) => item?.groupedCard?.cardGroupMap?.REGULAR)
       ?.groupedCard?.cardGroupMap?.REGULAR?.cards
       ?.flatMap((items) => items?.card?.card?.itemCards || []) || [];
-  console.log("MenuItems", menuItems);
+  // console.log("MenuItems", menuItems);
 
   // Extract menu objects
+  // console.log("Menu Items Before Mapping:", menu);
   const menu = menuItems.map((items) => items?.card?.info);
-  console.log("Menu ", menu);
+  // console.log("Menu ", menu);
+
+  // console.log("Restaurant Data:", restaurant);
+  // console.log("Extracted Menu Items:", menuItems);
+
+  console.log("Restaurant Data:", JSON.stringify(restaurant, null, 2));
+  console.log("Extracted Menu Items:", menuItems);
 
   return (
     <div className="flex flex-col items-center p-4">
@@ -62,7 +69,7 @@ const RestaurantMenu = () => {
       {/* Menu Items Section */}
       <div className="bg-white shadow-md rounded-lg p-4 w-full max-w-2xl">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">Menu</h1>
-        <ul className="space-y-2">
+        <ul className="space-y-2" data-testid="menu">
           {menu.length > 0 ? (
             menu.map((item, index) => (
               <li
@@ -79,6 +86,7 @@ const RestaurantMenu = () => {
                     )}
                   </div>
                   <button
+                    data-testid="addBtn"
                     className="p-1 bg-green-100 rounded-md"
                     onClick={() => addFoodItem(item)}
                   >
