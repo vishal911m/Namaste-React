@@ -21,9 +21,9 @@ Thumbs.db
 # Distribution/build directory
 dist/
 
-.prettierrc
-.babelrc
-package-lock.json
-package.json
+# .prettierrc
+# .babelrc
+# package-lock.json
+# package.json
 
 /coverage
